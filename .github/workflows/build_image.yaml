@@ -12,9 +12,12 @@ jobs:
       - name: Copy files on machine
         uses: actions/checkout@v3
 
-      - name: Test build 
-        working-directory: ./learn_project
-        run: docker build -t  stdlaibach/anime-backend-django:${GITHUB_REF##*/} .
+      - name: Login to dockerhub
+        run: docker login -u stdlaibach ${DOCKERHUB_TOKEN}
 
-      - name: Check docker images
-        run: docker images
+      - name: Build image
+        working-directory: ./learn_project
+        run: docker build -t stdlaibach/anime-backend-django:${GITHUB_REF##*/} .
+
+      - name: Push docker image to private registry
+        run: docker push stdlaibach/anime-backend-django:${GITHUB_REF##*/}
