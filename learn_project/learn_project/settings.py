@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,12 +25,12 @@ SECRET_KEY = 'django-insecure-z+b^+n(#*#=l@5g$3u-8ty4gww^dvm$lhf8ih9(b#klj16b^57
 # SECURITY WARNING: don't run with debug turned on in production!
 
 # For DEBUG
-# DEBUG = True
-# ALLOWED_HOSTS = []
+DEBUG = True
+ALLOWED_HOSTS = []
 
 # For "prod"
-DEBUG = False
-ALLOWED_HOSTS = ["*"]
+# DEBUG = False
+# ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'learn_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'animedb',
+        'USER': 'laibach',
+        'PASSWORD': 'laibachpassword',
+        'HOST': '127.0.0.1', #127.0.0.1 пока наше приложение вне докера, потом это будет хостнэйм контейнера с бд
+        'PORT': '5432',
     }
 }
 
@@ -127,3 +131,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
