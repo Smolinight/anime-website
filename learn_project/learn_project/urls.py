@@ -20,5 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('anime/', include('anime.urls'))
+    path('', include('anime.urls'))
 ]
+
+handler404 = pageNotFound
