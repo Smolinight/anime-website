@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:15.2-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: laibach
+      POSTGRES_PASSWORD: laibachpassword
+    volumes:
+      - anime_db_data:/var/lib/postgresql/data
+    networks:
+      - anime_network
+  gui_admin_database:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      PGADMIN_DEFAULT_EMAIL: laibach@anime.ru
+      PGADMIN_DEFAULT_PASSWORD: laibachadminpassword
+    volumes:
+      - anime_db_admin_data:/var/lib/pgadmin
+    networks:
+      - anime_network
+    depends_on:
+      - database
+
+volumes:
+  anime_db_data:
+  anime_db_admin_data:
+networks:
+  anime_network:
