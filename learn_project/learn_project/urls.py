@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from anime.views import *
 from django.urls import path, include
+from learn_project import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('anime.urls'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = pageNotFound
