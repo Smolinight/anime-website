@@ -79,6 +79,8 @@ WSGI_APPLICATION = 'learn_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+#потом брать все из переменных окружения
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
