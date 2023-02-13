@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'learn_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'animedb',
-        'USER': 'laibach',
-        'PASSWORD': 'laibachpassword',
-        'HOST': '127.0.0.1', #127.0.0.1 пока наше приложение вне докера, потом это будет хостнэйм контейнера с бд
-        'PORT': '5432',
+        'NAME': os.environ["DB_NAME"],
+        'USER': os.environ["DB_USER"],
+        'PASSWORD': os.environ["DB_PASSWORD"],
+        'HOST': os.environ["DB_HOST"], #127.0.0.1 пока наше приложение вне докера, потом это будет хостнэйм контейнера с бд
+        'PORT': os.environ["DB_PORT"],
     }
 }
 
