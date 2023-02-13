@@ -38,6 +38,8 @@ services:
       DB_NAME: animedb
     networks:
       - anime_network
+    depends_on:
+      - database
 
 
 volumes:
